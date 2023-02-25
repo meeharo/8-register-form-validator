@@ -34,7 +34,7 @@ function checkEmptyError (listInput) {
 
         if (!input.value) {
             isEmptyError = true
-            showError(input, `Vui lòng nhập trường này`)
+            showError(input, `${getFieldName(input)} is required`)
         } 
     })
     return isEmptyError
@@ -47,23 +47,21 @@ function checkEmailError (input) {
     let isEmailError = false
     if (!regex.test(input.value)) {
         regex.test(input.value) = true
-        showError(input, 'Email không hợp lệ')
+        showError(input, `${getFieldName(input)} is not valid`)
     }
     return isEmailError
 }
 
 function checkLengthPassWordError(input, min, max) {
-    input.value = input.value.trim()
-    
     if(input.value.length < min) {
-        showError(input, `Mật khẩu tối thiểu ${min} ký tự`)
+        showError(input, `${getFieldName(input)} must be less than ${min} characters`)
         return true
-    }
-
-    if (input.value.length < max) {
-        showError(input, `Mật khẩu tối đa ${max} ký tự `)
+    } 
+    
+    if (input.value.length > max) {
+        showError(input, `${getFieldName(input)} must be less than ${max} characters `)
         return true
-    }
+    } 
 
     return false
 }
@@ -71,10 +69,15 @@ function checkLengthPassWordError(input, min, max) {
 function checkMatchPasswordError (passwordInput, cfPasswordInput) {
     let isMatchError = false
     if (passwordInput.value !== cfPasswordInput.value) {
-        showError(cfPasswordInput, 'Mật khẩu không trùng khớp')
+        showError(cfPasswordInput, 'Passwords do not match')
         return true
     }
     return isMatchError
+}
+
+// get fieldName
+function getFieldName(input) {
+	return input.id.charAt(0).toUpperCase() + input.id.slice(1)
 }
 
 form.addEventListener('submit', function (e) {
@@ -85,9 +88,9 @@ form.addEventListener('submit', function (e) {
     checkEmptyError([username, email, password, confirmPassword])
     
     if (!checkEmptyError([username, email, password, confirmPassword])) {
-        checkEmailError(email)
-        checkLengthPassWordError(password, 3, 10)
+        checkLengthPassWordError(password, 3 , 10)
         checkMatchPasswordError(password, confirmPassword)
+        checkEmailError(email)
     }
 })
 
