@@ -1,0 +1,110 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+
+:root {
+	--primary-color: #2691d9;
+	--error-color: #e74c3c;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: linear-gradient(120deg, #3ca7ee, #9b408f);
+}
+
+.container {
+	width: 400px;
+	background: #fff;
+	padding: 20px 40px 10px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px rgb(0 0 0 / 5%);
+}
+
+.container .heading {
+	text-align: center;
+}
+
+.form-control {
+	position: relative;
+	margin: 40px 0;
+	border-bottom: 1px solid #adadad
+}
+
+.form-control.success {
+	border-bottom-color: var(--primary-color);
+}
+
+.form-control.error {
+	border-bottom-color: var(--error-color);
+}
+
+.form-control .form-input {
+	height: 40px;
+	width: 100%;
+	font-size: 16px;
+	outline: none;
+	border: none;
+}
+
+.form-control .text-error {	
+	position: absolute;
+	left: 0;
+	top: 100%;
+	color: var(--error-color);
+	font-size: 13px;
+	margin-top: 3px;
+}
+
+.form-control span::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  border-bottom: 1px solid var(--primary-color);
+  transition: .25s;
+}
+
+.form-control .form-input:focus ~ span::before {
+  width: 100%;
+}
+
+input[type="submit"] {
+  margin-top: 15px;
+  width: 100%;
+  padding: 6px 100px;
+  border: 1px solid var(--primary-clor);
+  outline: none;
+  background: var(--primary-color);
+  border-radius:25px ;
+  cursor: pointer;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+}
+
+input[type="submit"]:hover {
+	background: #08609a;
+}
+
+.signup_link {
+    margin: 20px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #666666;
+}
+
+.signup_link a {
+	text-decoration: none;
+	color: var(--primary-color);
+}
+
+
